@@ -22,12 +22,14 @@ body {
 
 .cv-container {
     display: flex;
-    width: 800px;
+    width: 800px; /* Keep the original size on desktop */
     background-color: rgba(20, 20, 20, 0.8);
     box-shadow: 0 0 15px rgba(117, 41, 41, 0.2);
     border-radius: 10px;
     overflow: hidden;
     animation: fadeIn 1.5s ease-in-out;
+    flex-wrap: wrap; /* Allows wrapping of the content */
+    padding: 20px;
 }
 
 .left-panel {
@@ -36,6 +38,7 @@ body {
     padding: 20px;
     color: white;
     text-align: center;
+    border-radius: 10px;
 }
 
 .left-panel img {
@@ -62,15 +65,32 @@ body {
     background-image: url('jaxx-cat.gif'); 
     background-size: cover;  
     background-position: center;  
-    background-repeat: no-repeat;  
+    background-repeat: no-repeat; 
+    opacity: 0; /* Initially hidden */
+    transform-origin: center;
+    animation: flipIn 3s ease-out forwards; /* Flip animation for entry */
 }
 
-
+/* Add Flip-in animation */
+@keyframes flipIn {
+    0% {
+        transform: rotateY(180deg); /* Start flipped */
+        opacity: 0;  /* Start invisible */
+    }
+    50% {
+        transform: rotateY(90deg); /* Rotate halfway */
+    }
+    100% {
+        transform: rotateY(0deg); /* End in normal position */
+        opacity: 1;  /* Fully visible */
+    }
+}
 
 .right-panel {
     width: 65%;
     padding: 20px;
     color: white;
+    text-align: left;
 }
 
 .right-panel h1 {
@@ -125,58 +145,35 @@ body {
     color: #1e90ff;  
 }
 
-/* Apply the flip-in animation to the skill box/container */
-.skills-box {
-    background-color: transparent;  /* Make the background transparent */
-    padding: 20px;
-    border: 2px solid #051801; /* Add border color */
-    border-radius: 10px;
-    transform-origin: center;  /* Set the origin for the flip */
-    animation: flipIn 3s ease-out forwards; /* Apply flip-in animation */
-    opacity: 0; /* Initially hide the container */
-}
-
-/* Apply a flip-in animation to the skill container */
-@keyframes flipIn {
-    0% {
-        transform: rotateY(180deg); /* Start flipped */
-        opacity: 0;  /* Start invisible */
-    }
-    50% {
-        transform: rotateY(90deg); /* Rotate halfway */
-    }
-    100% {
-        transform: rotateY(0deg); /* End in normal position */
-        opacity: 1;  /* Fully visible */
-    }
-}
-
-
-.skills-box p {
-    visibility: hidden; /* Hide text initially */
-    animation: textAppear 3s ease-out forwards 1s; /* Delay text appearance */
-}
-
-/* Make text appear after the flip animation */
-@keyframes textAppear {
-    0% {
-        visibility: hidden;
-        opacity: 0;
-    }
-    100% {
-        visibility: visible;
-        opacity: 1;
-    }
-}
+/* Media Query for Small Screens */
 @media (max-width: 768px) {
     body {
         font-size: 14px;
     }
+    
+    /* Adjust the cv-container to be responsive */
     .cv-container {
-        flex-direction: column;
+        flex-direction: column; /* Stack panels vertically on smaller screens */
+        width: 100%; /* Full width on mobile */
+        padding: 15px;
+    }
+
+    .left-panel, .right-panel {
+        width: 100%; /* Make both panels take up full width */
+        text-align: center;
+    }
+
+    .left-panel img {
+        width: 120px; /* Reduce profile image size */
+        height: 120px;
+    }
+
+    .right-panel h1 {
+        font-size: 2em; /* Smaller heading size on mobile */
+    }
+
+    .left-panel .skills-box {
+        padding: 15px; /* Reduce padding */
+        background-size: contain; /* Ensure the image fits properly on mobile */
     }
 }
-
-
-
-
