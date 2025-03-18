@@ -168,8 +168,14 @@ body {
         opacity: 1;
     }
 }
-
-
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    .cv-container {
+        flex-direction: column;
+    }
+}
 
 
 
