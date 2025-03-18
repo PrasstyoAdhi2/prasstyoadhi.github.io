@@ -145,35 +145,3 @@ body {
     color: #1e90ff;  
 }
 
-/* Media Query for Small Screens */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
-    
-    /* Adjust the cv-container to be responsive */
-    .cv-container {
-        flex-direction: column; /* Stack panels vertically on smaller screens */
-        width: 100%; /* Full width on mobile */
-        padding: 15px;
-    }
-
-    .left-panel, .right-panel {
-        width: 100%; /* Make both panels take up full width */
-        text-align: center;
-    }
-
-    .left-panel img {
-        width: 120px; /* Reduce profile image size */
-        height: 120px;
-    }
-
-    .right-panel h1 {
-        font-size: 2em; /* Smaller heading size on mobile */
-    }
-
-    .left-panel .skills-box {
-        padding: 15px; /* Reduce padding */
-        background-size: contain; /* Ensure the image fits properly on mobile */
-    }
-}
